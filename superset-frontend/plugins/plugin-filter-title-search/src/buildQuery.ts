@@ -16,26 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ChartProps, QueryFormData } from '@superset-ui/core';
-import { PluginFilterHooks, PluginFilterStylesProps } from '../types';
+import { buildQueryContext, ensureIsArray } from '@superset-ui/core';
+import { PluginFilterTitleSearchQueryFormData } from './types';
 
-export interface PluginFilterTitleSearchCustomizeProps {
-  enableEmptyFilter: boolean;
-  defaultValue?: string;
+/**
+ * This filter never renders chart data of its own (it is a plain text box),
+ * but Superset's backend rejects a chart-data query where both `metrics` and
+ * `columns` end up empty ("Empty query?"). Requesting the selected column
+ * with a tiny row_limit keeps the query valid and cheap without us using
+ * the result.
+ */
+export default function buildQuery(
+  formData: PluginFilterTitleSearchQueryFormData,
+) {
+  const { groupby = [] } = formData;
+  return buildQueryContext(formData, baseQueryObject => [
+    {
+      ...baseQueryObject,
+      groupby: ensureIsArray(groupby),
+      metrics: [],
+      row_limit: 1,
+    },
+  ]);
 }
-
-export type PluginFilterTitleSearchQueryFormData = QueryFormData &
-  PluginFilterStylesProps &
-  PluginFilterTitleSearchCustomizeProps;
-
-export interface PluginFilterTitleSearchChartProps extends ChartProps {}
-
-export type PluginFilterTitleSearchProps = PluginFilterStylesProps & {
-  formData: PluginFilterTitleSearchQueryFormData;
-  filterState: { value?: string };
-} & PluginFilterHooks;
-
-export const DEFAULT_FORM_DATA: PluginFilterTitleSearchCustomizeProps = {
-  enableEmptyFilter: false,
-  defaultValue: '',
-};

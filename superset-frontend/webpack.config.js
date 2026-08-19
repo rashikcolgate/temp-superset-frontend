@@ -462,6 +462,14 @@ const config = {
       This prevents "Module not found" errors for moment locale files.
       */
       'moment/min/moment-with-locales': false,
+      /*
+      geostyler-qgis-parser (a dependency of the unused Cartodiagram map chart)
+      ships broken ESM that references a nonexistent 'isGeoStylerFunction'
+      export and unresolvable extensionless imports. Since we don't use the
+      Cartodiagram chart, stub the whole package out rather than trying to
+      patch its internals.
+      */
+      'geostyler-qgis-parser': false,
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.yml'],
     fallback: {

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { noOp } from 'src/utils/common';
+import { noOp } from './common';
 import {
   DEFAULT_FORM_DATA,
   PluginFilterTitleSearchChartProps,

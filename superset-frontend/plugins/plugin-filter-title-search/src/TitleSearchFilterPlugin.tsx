@@ -21,7 +21,7 @@ import { t } from '@apache-superset/core/translation';
 import { ExtraFormData, getColumnLabel } from '@superset-ui/core';
 import { Input } from '@superset-ui/core/components';
 import { debounce } from 'lodash';
-import { FilterPluginStyle } from '../common';
+import { FilterPluginStyle } from './common';
 import { PluginFilterTitleSearchProps } from './types';
 
 export default function TitleSearchFilterPlugin(

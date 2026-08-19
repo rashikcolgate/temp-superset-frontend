@@ -188,7 +188,6 @@ export enum FilterPlugins {
   Time = 'filter_time',
   TimeColumn = 'filter_timecolumn',
   TimeGrain = 'filter_timegrain',
-  TitleSearch = 'filter_title_search',
 }
 
 export enum ChartCustomizationPlugins {

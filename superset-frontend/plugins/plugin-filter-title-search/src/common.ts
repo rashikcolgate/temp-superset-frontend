@@ -16,19 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { buildQueryContext, QueryFormData } from '@superset-ui/core';
+import { styled } from '@apache-superset/core/theme';
+import { PluginFilterStylesProps } from './types';
 
-/**
- * This filter never renders chart data of its own (it is a plain text box),
- * so the query just needs to be syntactically valid. row_limit: 0 keeps it cheap.
- */
-export default function buildQuery(formData: QueryFormData) {
-  return buildQueryContext(formData, baseQueryObject => [
-    {
-      ...baseQueryObject,
-      columns: [],
-      metrics: [],
-      row_limit: 0,
-    },
-  ]);
-}
+export const RESPONSIVE_WIDTH = 0;
+
+export const FilterPluginStyle = styled.div<PluginFilterStylesProps>`
+  min-height: ${({ height }) => height}px;
+  width: ${({ width }) => (width === RESPONSIVE_WIDTH ? '100%' : `${width}px`)};
+`;
+
+export const noOp = (): undefined => undefined;

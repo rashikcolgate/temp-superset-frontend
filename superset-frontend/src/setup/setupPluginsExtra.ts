@@ -17,5 +17,8 @@
  * under the License.
  */
 
+import TitleSearchFilterPlugin from '@superset-ui/plugin-filter-title-search';
 // For individual deployments to add custom overrides
-export default function setupPluginsExtra() {}
+export default function setupPluginsExtra() {
+  new TitleSearchFilterPlugin().configure({ key: 'filter_title_search' }).register();
+}
