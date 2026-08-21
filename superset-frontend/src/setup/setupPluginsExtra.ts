@@ -18,7 +18,9 @@
  */
 
 import TitleSearchFilterPlugin from '@superset-ui/plugin-filter-title-search';
+import CalendarFilterPlugin from '@superset-ui/plugin-filter-calendar';
 // For individual deployments to add custom overrides
 export default function setupPluginsExtra() {
   new TitleSearchFilterPlugin().configure({ key: 'filter_title_search' }).register();
+  new CalendarFilterPlugin().configure({ key: 'filter_calendar' }).register();
 }
